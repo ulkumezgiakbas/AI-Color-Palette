@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI Renk Paleti Üretici</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <div class="container">
+    <div class="card">
+      <h1>AI Renk Paleti Üretici 🎨🤖</h1>
+      <p>Görsel yükle veya webcam ile çek. KMeans ile baskın renkleri çıkaralım; HEX/RGB, oran ve <b>tamamlayıcı/analog</b> önerilerini gösterelim.</p>
+      <div class="row">
+        <div>
+          <div id="uploader" class="uploader">
+            <input id="file" type="file" accept="image/*" hidden>
+            <p><b>Görseli sürükle-bırak</b> ya da seç</p>
+            <div class="buttons">
+              <button onclick="document.getElementById('file').click()">Dosya Seç</button>
+              <button id="webcamBtn">Webcam Aç</button>
+              <button id="snapBtn" disabled>Fotoğraf Çek</button>
+            </div>
+            <div class="hint">Desteklenen türler: JPG, PNG, WEBP. Uzun kenarı 600px önizleme.</div>
+            <div class="flex" style="margin-top:10px">
+              <label>K (küme): <input id="k" type="number" min="2" max="12" value="6"></label>
+              <button id="analyzeBtn" disabled>Analiz Et</button>
+            </div>
+          </div>
+          <div style="margin-top:12px" id="media"></div>
+          <div style="margin-top:12px"><img id="preview" class="preview" style="display:none"/></div>
+        </div>
+        <div>
+          <div id="result" class="card" style="padding:12px">
+            <b>Palet</b>
+            <div id="palette" class="palette" style="margin-top:10px"></div>
+          </div>
+        </div>
+      </div>
+      <div class="footer">Made by Ezgi Akbaş with Flask · KMeans · OpenCV </div>
+    </div>
+  </div>
+
+  <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>
